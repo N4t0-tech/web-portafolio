@@ -1,0 +1,31 @@
+/* ===========================================
+   ESTILOS - Pagina Servicios (servicios.html)
+   =========================================== */
+
+/* Card de informacion */
+.card.alert-info {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #d1ecf1;
+    border-bottom: none;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.blockquote p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.blockquote-footer {
+    font-style: italic;
+    color: #888;
+}

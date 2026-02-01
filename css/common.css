@@ -1,0 +1,47 @@
+/* ===========================================
+   ESTILOS COMUNES - Navbar y Footer
+   =========================================== */
+
+/* Navbar personalizado */
+.navbar {
+    padding: 0.8rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #28a745 !important;
+}
+
+/* Boton Atras */
+.btn-outline-success {
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+/* Body flex para footer sticky */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main, section.container {
+    flex: 1;
+}
