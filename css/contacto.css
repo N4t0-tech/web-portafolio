@@ -1,0 +1,42 @@
+/* ===========================================
+   ESTILOS - Pagina Contacto (contacto.html)
+   =========================================== */
+
+/* Section de contactos */
+.container.mt-5 {
+    padding: 2rem 0;
+}
+
+/* Cards de contacto */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card-text a:hover {
+    color: #28a745;
+}
