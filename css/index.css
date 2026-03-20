@@ -1,72 +1,43 @@
-/* ===========================================
-   ESTILOS - Pagina Inicio (index.html)
-   =========================================== */
-
-/* Hero Section */
-.hero-section h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
+.hero-text {
+  padding: 4px 0 10px;
 }
 
-.hero-section p {
-    font-size: 1.1rem;
-    color: #666;
-    line-height: 1.8;
+.hero-text p {
+  margin: 4px 0;
+  font-size: 13px;
 }
 
-/* Cards de proyectos */
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-    overflow: hidden;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 4px 0;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
+.project-window {
+  font-size: 12px;
 }
 
-.card-title {
-    font-weight: bold;
-    color: #333;
+.project-window .window-body {
+  padding: 6px;
 }
 
-.card-text {
-    color: #666;
+.project-img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 6px;
 }
 
-/* Card con altura completa */
-.card.h-100 {
-    display: flex;
-    flex-direction: column;
-}
-
-.card.h-100 .card-body {
-    flex: 1;
-}
-
-/* Footer de card */
-.card-footer {
-    border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-.card-footer .btn {
-    transition: all 0.3s ease;
-}
-
-.card-footer .btn:hover {
-    background-color: #333;
-    color: #fff;
-}
-
-/* Titulo de seccion */
-h2.mb-4 {
-    font-weight: bold;
-    color: #333;
+.project-desc {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.4;
 }

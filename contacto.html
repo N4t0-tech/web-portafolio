@@ -1,98 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Web-Portafolio</title>
-    <!-- Enlace a la hoja de estilos de Bootstrap -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Estilos personalizados -->
-    <link href="css/common.css" rel="stylesheet">
-    <link href="css/contacto.css" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">
-        <button class="btn btn-outline-success me-2" type="button">
-          Atras
-        </button>
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html"
-              >Inicio <span class="sr-only">(actual)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="acercade.html">Acerca de</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="servicios.html">Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacto.html">Contacto</a>
-          </li>
-        </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Renato Campos</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+
+  <div class="window main-window">
+    <div class="title-bar">
+      <div class="title-bar-text">&#128231; Contacto - Renato Campos</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
       </div>
-    </nav>
+    </div>
 
-    <section class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img  src="resurces/mr.natoo_qr.png" class="card-img-top" alt="Imagen 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Instagram</h5>
-                        <p class="card-text"><a style="color: black;" href="">@mr.natoo</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="resurces/github.jpg" class="card-img-top" alt="Imagen 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Github</h5>
-                        <p class="card-text"><a style="color: black;" href="https://github.com/N4t0-tech">github.com/N4t0-tech</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="resurces/mail.jpg" class="card-img-top" alt="Imagen 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Gmail</h5>
-                        <p class="card-text"><a style="color: black;" href="renaxd13@gmail.com">renaxd13@gmail.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-      
+    <div class="window-body">
+      <p>Puedes encontrarme en las siguientes plataformas:</p>
 
+      <div class="contact-grid">
 
+        <fieldset>
+          <legend>&#128247; Instagram</legend>
+          <img src="resurces/mr.natoo_qr.png" alt="QR Instagram" class="contact-img">
+          <p><a href="https://instagram.com/mr.natoo" target="_blank">@mr.natoo</a></p>
+          <p>Escanea el QR para seguirme.</p>
+        </fieldset>
 
+        <fieldset>
+          <legend>&#128024; GitHub</legend>
+          <img src="resurces/github.jpg" alt="GitHub" class="contact-img">
+          <p><a href="https://github.com/N4t0-tech" target="_blank">github.com/N4t0-tech</a></p>
+          <p>Mira mis proyectos y c&#243;digo.</p>
+        </fieldset>
 
-    <!-- Scripts de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Scripts personalizados -->
-    <script src="js/common.js"></script>
-    <script src="js/contacto.js"></script>
-  </body>
+        <fieldset>
+          <legend>&#128140; Gmail</legend>
+          <img src="resurces/mail.jpg" alt="Gmail" class="contact-img">
+          <p><a href="mailto:renaxd13@gmail.com">renaxd13@gmail.com</a></p>
+          <p>Para consultas y colaboraciones.</p>
+        </fieldset>
+
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <p class="status-bar-field">3 medios de contacto</p>
+      <p class="status-bar-field">&#169; 2026 Renato Campos</p>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button><b>&#128187; Inicio</b></button>
+    <div class="taskbar-sep"></div>
+    <div class="taskbar-programs">
+      <button onclick="location.href='index.html'">&#128193; Mi Portafolio</button>
+      <button onclick="location.href='acercade.html'">&#128221; Acerca de</button>
+      <button onclick="location.href='servicios.html'">&#9881; Servicios</button>
+      <button class="active-page" onclick="location.href='contacto.html'">&#128231; Contacto</button>
+    </div>
+    <div class="taskbar-sep"></div>
+    <div class="taskbar-clock" id="taskbar-clock"></div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
 </html>

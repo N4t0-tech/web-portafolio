@@ -1,34 +1,108 @@
-/* ===========================================
-   ESTILOS - Pagina Acerca de (acercade.html)
-   =========================================== */
-
-/* Titulo principal */
-.card .fs-1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
+.blog-layout {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
 }
 
-/* Card contenedor */
-.card {
-    border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+.blog-main {
+  flex: 1;
+  min-width: 0;
 }
 
-.card-body {
-    padding: 2rem;
+.blog-sidebar {
+  width: 185px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Lista de informacion */
-.list-group-item {
-    border: none;
-    padding: 1.5rem 2rem;
+/* Tab panels */
+[role="tabpanel"] {
+  border: 2px solid;
+  border-color: #ffffff #868a8e #868a8e #ffffff;
+  padding: 12px;
+  min-height: 280px;
+  background: #ffffff;
 }
 
-.list-group-item p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-    text-align: justify;
+/* Blog post entries */
+.blog-post + .blog-post {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #808080;
+}
+
+.blog-post-date {
+  font-size: 10px;
+  color: #808080;
+  margin: 0 0 3px;
+}
+
+.blog-post-title {
+  background: #000080;
+  color: #ffffff;
+  padding: 2px 6px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.blog-post-body {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.blog-post-body p {
+  margin: 0 0 6px;
+}
+
+.blog-post-footer {
+  font-size: 10px;
+  color: #808080;
+  border-top: 1px solid #c0c0c0;
+  padding-top: 4px;
+  margin-top: 8px;
+}
+
+/* Skills */
+.skills-section fieldset + fieldset {
+  margin-top: 8px;
+}
+
+/* Sidebar */
+.sidebar-widget {
+  font-size: 11px;
+}
+
+.sidebar-widget p,
+.sidebar-widget li {
+  margin: 2px 0;
+  font-size: 11px;
+}
+
+.sidebar-widget ul {
+  padding-left: 14px;
+  margin: 4px 0;
+}
+
+.counter {
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #00ff00;
+  background: #000000;
+  padding: 2px 6px;
+  display: block;
+  text-align: center;
+  margin: 4px 0;
+}
+
+@media (max-width: 620px) {
+  .blog-layout {
+    flex-direction: column;
+  }
+  .blog-sidebar {
+    width: 100%;
+  }
 }

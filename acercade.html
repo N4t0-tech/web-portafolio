@@ -1,74 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mi Web-Portafolio</title>
-        <!-- Enlace a la hoja de estilos de Bootstrap -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Estilos personalizados -->
-        <link href="css/common.css" rel="stylesheet">
-        <link href="css/acercade.css" rel="stylesheet">
-    </head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog de Renato - Acerca de</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/acercade.css">
+</head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">
-                <button class="btn btn-outline-success me-2" type="button">Atras</button>
-            </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Inicio <span class="sr-only">(actual)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="acercade.html">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="servicios.html">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
+
+  <div class="window main-window" style="max-width: 960px;">
+    <div class="title-bar">
+      <div class="title-bar-text">&#128221; Blog de Renato - Acerca de m&#237;</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="window-body">
+
+      <!-- Marquee estilo 2000s -->
+      <marquee style="font-size:11px; color:#000080; border:1px inset silver; padding:2px; margin-bottom:8px;">
+        &#9733; Bienvenido a mi blog &#9733; Tecnólogo en Telecomunicaciones &#9733; Amante de los videojuegos indie y el rock/metal &#9733; ¡Gracias por visitar! &#9733;
+      </marquee>
+
+      <!-- Pestañas -->
+      <menu role="tablist" aria-label="Secciones del blog">
+        <li role="tab" aria-selected="true"><a href="#tab-inicio">&#127968; Inicio</a></li>
+        <li role="tab"><a href="#tab-sobremi">&#128100; Sobre m&#237;</a></li>
+        <li role="tab"><a href="#tab-habilidades">&#128187; Habilidades</a></li>
+      </menu>
+
+      <div class="blog-layout">
+
+        <!-- Contenido principal -->
+        <div class="blog-main">
+
+          <!-- Tab: Inicio -->
+          <div id="tab-inicio" role="tabpanel">
+
+            <div class="blog-post">
+              <p class="blog-post-date">Publicado el 20 de Marzo, 2026 | Categor&#237;a: Personal</p>
+              <p class="blog-post-title">&#9733; &#161;Bienvenidos a mi blog! &#9733;</p>
+              <div class="blog-post-body">
+                <p>&#161;Hola a todos! Soy Renato y este es mi espacio en internet donde comparto mis proyectos, pensamientos y aventuras en el mundo de la tecnolog&#237;a.</p>
+                <p>Actualmente estudio para ser Ingeniero en Telecomunicaciones. En mi tiempo libre disfruto programar, diseñar webs y jugar videojuegos indie.</p>
+                <p>Si quieres saber m&#225;s sobre m&#237;, echa un vistazo a las otras pestañas. &#161;Y no olvides visitar <a href="index.html">mis proyectos</a>!</p>
+              </div>
+              <p class="blog-post-footer">&#128172; Comentarios (0) &nbsp;|&nbsp; &#128065; Vistas: 42</p>
+            </div>
+
+            <div class="blog-post">
+              <p class="blog-post-date">Publicado el 1 de Enero, 2025 | Categor&#237;a: Proyectos</p>
+              <p class="blog-post-title">&#9733; Nuevo proyecto: Timer Xmas &#9733;</p>
+              <div class="blog-post-body">
+                <p>Acabo de publicar mi primer proyecto: un contador navide&#241;o con tema retro. Puedes verlo en mi <a href="https://github.com/N4t0-tech/timer-xmas" target="_blank">GitHub</a>.</p>
+                <p>Fue un proyecto divertido para practicar JavaScript y diseño web. &#161;Espero que les guste!</p>
+              </div>
+              <p class="blog-post-footer">&#128172; Comentarios (0) &nbsp;|&nbsp; &#128065; Vistas: 17</p>
+            </div>
+
+          </div>
+
+          <!-- Tab: Sobre mí -->
+          <div id="tab-sobremi" role="tabpanel" hidden>
+
+            <div class="blog-post">
+              <p class="blog-post-date">Actualizado el 20 de Marzo, 2026</p>
+              <p class="blog-post-title">&#9733; &#191;Qui&#233;n soy? &#9733;</p>
+              <div class="blog-post-body">
+                <p>&#161;Hola! Soy Renato, tecn&#243;logo en telecomunicaciones apasionado por la programaci&#243;n, las redes y los sistemas integrados.</p>
+                <p>Tengo experiencia en sistemas operativos <b>Linux</b> y <b>Windows</b>, y cuento con certificaciones <b>CCNA 1 y 2</b>. Esto me permite diseñar, implementar y optimizar soluciones tecnol&#243;gicas eficientes.</p>
+                <p>Me encanta enfrentar desaf&#237;os t&#233;cnicos y colaborar en proyectos que fusionen tecnolog&#237;a y creatividad. Disfruto configurando redes, explorando nuevos lenguajes de programaci&#243;n y creando soluciones pr&#225;cticas.</p>
+                <p>Mi objetivo profesional es titularme como <b>ingeniero en telecomunicaciones</b> y viajar por el mundo, adquiriendo nuevas experiencias y conocimientos.</p>
+                <p>Adem&#225;s de mi carrera, soy un entusiasta de los <b>videojuegos indie</b> y de la <b>m&#250;sica rock y metal</b>. ¡Siempre con la mente abierta y creativa!</p>
+              </div>
+              <p class="blog-post-footer">&#128172; Comentarios (0) &nbsp;|&nbsp; &#128065; Vistas: 89</p>
+            </div>
+
+          </div>
+
+          <!-- Tab: Habilidades -->
+          <div id="tab-habilidades" role="tabpanel" hidden>
+
+            <div class="skills-section">
+              <p class="blog-post-title">&#9733; Mis Habilidades &#9733;</p>
+
+              <fieldset>
+                <legend>Telecomunicaciones</legend>
+                <ul class="tree-view">
+                  <li>Redes TCP/IP</li>
+                  <li>CCNA 1 &amp; 2</li>
+                  <li>Configuraci&#243;n de routers y switches</li>
+                  <li>Sistemas integrados (PIC16F84A)</li>
+                </ul>
+              </fieldset>
+
+              <fieldset>
+                <legend>Programaci&#243;n</legend>
+                <ul class="tree-view">
+                  <li>HTML / CSS / JavaScript</li>
+                  <li>Assembly (PIC)</li>
+                  <li>Python (b&#225;sico)</li>
+                  <li>Bash / Shell scripting</li>
+                </ul>
+              </fieldset>
+
+              <fieldset>
+                <legend>Sistemas Operativos</legend>
+                <ul class="tree-view">
+                  <li>Linux (usuario avanzado)</li>
+                  <li>Windows (usuario avanzado)</li>
+                </ul>
+              </fieldset>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Sidebar estilo blog 2000s -->
+        <div class="blog-sidebar">
+
+          <fieldset class="sidebar-widget">
+            <legend>&#128100; Sobre el Autor</legend>
+            <p><b>Renato Campos</b></p>
+            <p>Tecn&#243;logo en Telecomunicaciones.</p>
+            <p>Amante del rock, el metal y los videojuegos indie.</p>
+          </fieldset>
+
+          <fieldset class="sidebar-widget">
+            <legend>&#128279; Mis Links</legend>
+            <ul>
+              <li><a href="https://github.com/N4t0-tech" target="_blank">GitHub</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="index.html">Mi Portafolio</a></li>
             </ul>
+          </fieldset>
+
+          <fieldset class="sidebar-widget">
+            <legend>&#128202; Contador</legend>
+            <p>Visitas hoy:</p>
+            <span class="counter">000042</span>
+            <p>Total:</p>
+            <span class="counter">001337</span>
+          </fieldset>
+
+          <fieldset class="sidebar-widget">
+            <legend>&#128197; Archivo</legend>
+            <ul>
+              <li><a href="#">Marzo 2026 (1)</a></li>
+              <li><a href="#">Enero 2025 (1)</a></li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="sidebar-widget">
+            <legend>&#127925; Escuchando</legend>
+            <p>&#9835; Iron Maiden</p>
+            <p>&#9835; Metallica</p>
+            <p>&#9835; Pixies</p>
+          </fieldset>
+
         </div>
-    </nav>
 
-    <div class="card">
-        <div class="card-body">
-            <p class="fs-1">Acerca de</p>
-            
-
-           
-        </div>
       </div>
+    </div>
 
-      <div class="card">
-       
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <p>  ¡Hola! Soy Renato, tecnólogo en telecomunicaciones apasionado por la programación, las redes y los sistemas integrados. Con experiencia en el manejo de sistemas operativos Linux y Windows, y certificaciones CCNA 1 y 2, he desarrollado habilidades que me permiten diseñar, implementar y optimizar soluciones tecnológicas eficientes.
-                  
-                      Me encanta enfrentar desafíos técnicos y colaborar en proyectos que fusionen tecnología y creatividad. Disfruto configurando redes, explorando nuevos lenguajes de programación y creando soluciones prácticas que impulsen la conectividad y la innovación.
-                      
-                      Mi objetivo profesional es titularme como ingeniero en telecomunicaciones y viajar por el mundo, adquiriendo nuevas experiencias y conocimientos que me permitan crecer tanto personal como profesionalmente.
-                      
-                      Además de mi carrera, soy un entusiasta de los videojuegos indie y de la música rock y metal, lo que me inspira a mantener siempre una mente abierta y creativa.
-                      
-                      Te invito a explorar mi portafolio y conocer más sobre mis proyectos y habilidades. ¡Estoy abierto a nuevas oportunidades y colaboraciones!</p>
-                </li>
-              </ul>
-      </div>
+    <div class="status-bar">
+      <p class="status-bar-field">Blog de Renato</p>
+      <p class="status-bar-field">En l&#237;nea</p>
+      <p class="status-bar-field">&#169; 2026</p>
+    </div>
+  </div>
 
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button><b>&#128187; Inicio</b></button>
+    <div class="taskbar-sep"></div>
+    <div class="taskbar-programs">
+      <button onclick="location.href='index.html'">&#128193; Mi Portafolio</button>
+      <button class="active-page" onclick="location.href='acercade.html'">&#128221; Acerca de</button>
+      <button onclick="location.href='servicios.html'">&#9881; Servicios</button>
+      <button onclick="location.href='contacto.html'">&#128231; Contacto</button>
+    </div>
+    <div class="taskbar-sep"></div>
+    <div class="taskbar-clock" id="taskbar-clock"></div>
+  </div>
 
-        <!-- Scripts de Bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- Scripts personalizados -->
-        <script src="js/common.js"></script>
-        <script src="js/acercade.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/acercade.js"></script>
 </body>
 </html>

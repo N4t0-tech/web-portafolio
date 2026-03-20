@@ -1,0 +1,270 @@
+/* Garantizar que [hidden] siempre oculte el elemento */
+[hidden] { display: none !important; }
+
+/* ── Boot Screen ─────────────────────────────────────────── */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  color: #ffffff;
+}
+
+.boot-logo {
+  font-size: 52px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+
+.boot-edition {
+  font-size: 13px;
+  color: #aaaaff;
+  margin-bottom: 56px;
+  font-style: italic;
+}
+
+.boot-bar-wrap {
+  width: 300px;
+}
+
+.boot-bar-wrap .progress-indicator {
+  height: 22px;
+}
+
+.boot-copyright {
+  position: absolute;
+  bottom: 24px;
+  font-size: 11px;
+  color: #666699;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Screensaver ─────────────────────────────────────────── */
+#screensaver {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  cursor: none;
+  background: #000;
+}
+
+#screensaver-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Shutdown Screen ─────────────────────────────────────── */
+#shutdown-screen {
+  position: fixed;
+  inset: 0;
+  background: #000080;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99997;
+  text-align: center;
+}
+
+#shutdown-screen .shutdown-title {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+#shutdown-screen .shutdown-sub {
+  font-size: 12px;
+  color: #aaaaff;
+}
+
+/* ── Desktop ─────────────────────────────────────────────── */
+#desktop {
+  width: 100%;
+  height: calc(100vh - 38px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Desktop Icons ───────────────────────────────────────── */
+.desktop-icon {
+  position: absolute;
+  width: 72px;
+  text-align: center;
+  padding: 4px;
+  cursor: default;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.desktop-icon .icon-img {
+  font-size: 36px;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.desktop-icon span {
+  font-size: 11px;
+  color: white;
+  text-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+  display: block;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.desktop-icon.selected {
+  background: rgba(0, 0, 128, 0.5);
+  border: 1px dotted rgba(255, 255, 255, 0.8);
+}
+
+/* ── Start Menu ──────────────────────────────────────────── */
+#start-menu {
+  position: fixed;
+  bottom: 38px;
+  left: 0;
+  width: 220px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #868a8e #868a8e #ffffff;
+  z-index: 10001;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.start-menu-sidebar {
+  background: linear-gradient(to top, #000080, #1084d0);
+  color: white;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 8px 5px;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.start-menu-sidebar .sidebar-accent {
+  color: #ffd700;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.start-menu-items {
+  flex: 1;
+  padding: 4px 0;
+}
+
+.start-menu-item {
+  padding: 5px 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.start-menu-item:hover {
+  background: #000080;
+  color: white;
+}
+
+.start-menu-sep {
+  border: none;
+  border-top: 1px solid #868a8e;
+  border-bottom: 1px solid white;
+  margin: 2px 0;
+}
+
+/* ── Dialog ──────────────────────────────────────────────── */
+#dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 50000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-window {
+  width: 300px;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dialog-msg-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.dialog-msg-row .dialog-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.dialog-msg-row p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dialog-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* ── Window layout (flex column para que status bar quede abajo) */
+.main-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-window > .window-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.main-window[data-maximized="true"] {
+  border: none !important;
+}
+
+/* ── Resize handles ──────────────────────────────────────── */
+.resize-handle { position: absolute; z-index: 10; }
+.resize-n  { top: 0;    left: 4px;   right: 4px;  height: 4px; cursor: n-resize;  }
+.resize-s  { bottom: 0; left: 4px;   right: 4px;  height: 4px; cursor: s-resize;  }
+.resize-e  { top: 4px;  right: 0;    bottom: 4px; width: 4px;  cursor: e-resize;  }
+.resize-w  { top: 4px;  left: 0;     bottom: 4px; width: 4px;  cursor: w-resize;  }
+.resize-nw { top: 0;    left: 0;     width: 8px;  height: 8px; cursor: nw-resize; }
+.resize-ne { top: 0;    right: 0;    width: 8px;  height: 8px; cursor: ne-resize; }
+.resize-se { bottom: 0; right: 0;    width: 8px;  height: 8px; cursor: se-resize; }
+.resize-sw { bottom: 0; left: 0;     width: 8px;  height: 8px; cursor: sw-resize; }
+
+/* ── Taskbar minimized ───────────────────────────────────── */
+.taskbar-programs button.minimized {
+  font-style: italic;
+  opacity: 0.7;
+}

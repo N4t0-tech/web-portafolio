@@ -1,47 +1,104 @@
-/* ===========================================
-   ESTILOS COMUNES - Navbar y Footer
-   =========================================== */
-
-/* Navbar personalizado */
-.navbar {
-    padding: 0.8rem 1rem;
+@font-face {
+  font-family: 'Mononoki';
+  src: url('../fonts/MononokiNerdFontMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.3rem;
+* {
+  box-sizing: border-box;
+  font-family: 'Mononoki', 'Noto Sans', monospace;
 }
 
-.nav-link {
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #28a745 !important;
-}
-
-/* Boton Atras */
-.btn-outline-success {
-    border-radius: 20px;
-    padding: 5px 15px;
-}
-
-/* Footer */
-footer {
-    margin-top: auto;
-}
-
-footer p {
-    margin-bottom: 0;
-}
-
-/* Body flex para footer sticky */
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-color: #008080;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: auto;
 }
 
-main, section.container {
-    flex: 1;
+.main-window {
+  position: absolute;
+  width: 90%;
+  max-width: 880px;
+  overflow: hidden;
+}
+
+/* ── Taskbar ── */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  z-index: 9999;
+}
+
+.title-bar {
+  cursor: move;
+  user-select: none;
+}
+
+.status-bar {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.status-bar-field {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.title-bar-controls button {
+  cursor: default;
+}
+
+.taskbar-sep {
+  width: 2px;
+  height: 30px;
+  border-left: 1px solid #868a8e;
+  border-right: 1px solid #ffffff;
+  margin: 0 2px;
+}
+
+.taskbar-programs {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.taskbar-programs button {
+  min-width: 110px;
+  max-width: 160px;
+  text-align: left;
+  padding: 2px 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.taskbar-programs button.active-page {
+  box-shadow: inset -1px -1px 0 #ffffff, inset 1px 1px 0 #0a0a0a,
+              inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
+}
+
+.taskbar-clock {
+  box-shadow: inset 1px 1px 0 #868a8e, inset -1px -1px 0 #ffffff;
+  padding: 2px 10px;
+  font-size: 11px;
+  white-space: nowrap;
 }

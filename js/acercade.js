@@ -1,17 +1,15 @@
-/* ===========================================
-   SCRIPTS - Pagina Acerca de (acercade.html)
-   =========================================== */
+document.addEventListener('DOMContentLoaded', function () {
+  var tabs = document.querySelectorAll('[role="tab"]');
+  var panels = document.querySelectorAll('[role="tabpanel"]');
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Animacion de fade-in para el contenido
-    const cards = document.querySelectorAll('.card');
-
-    cards.forEach(function(card, index) {
-        card.style.opacity = '0';
-
-        setTimeout(function() {
-            card.style.transition = 'opacity 0.6s ease';
-            card.style.opacity = '1';
-        }, 200 * index);
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function (e) {
+      e.preventDefault();
+      tabs.forEach(function (t) { t.removeAttribute('aria-selected'); });
+      panels.forEach(function (p) { p.setAttribute('hidden', ''); });
+      tab.setAttribute('aria-selected', 'true');
+      var panelId = tab.querySelector('a').getAttribute('href').slice(1);
+      document.getElementById(panelId).removeAttribute('hidden');
     });
+  });
 });
