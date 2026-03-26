@@ -45,6 +45,65 @@
   line-height: 1.6;
 }
 
+/* ── Login Screen ────────────────────────────────────────── */
+#login-screen {
+  position: fixed;
+  inset: 0;
+  background: #008080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99996;
+}
+
+.login-window {
+  width: 360px;
+}
+
+.login-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.login-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.login-header p {
+  font-size: 11px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.login-fields {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
+}
+
+.login-fields td {
+  padding: 4px 4px;
+  font-size: 11px;
+}
+
+.login-fields td:first-child {
+  white-space: nowrap;
+  width: 90px;
+}
+
+.login-fields input {
+  width: 100%;
+}
+
+.login-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 /* ── Screensaver ─────────────────────────────────────────── */
 #screensaver {
   position: fixed;
@@ -60,11 +119,22 @@
   height: 100%;
 }
 
+#screensaver-offline {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-size: 13px;
+  color: #ff4444;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 /* ── Shutdown Screen ─────────────────────────────────────── */
 #shutdown-screen {
   position: fixed;
   inset: 0;
-  background: #000080;
+  background: #000000;
   color: white;
   display: flex;
   flex-direction: column;
@@ -81,8 +151,22 @@
 
 #shutdown-screen .shutdown-sub {
   font-size: 12px;
-  color: #aaaaff;
+  color: #888888;
 }
+
+#shutdown-screen .shutdown-offline {
+  font-size: 64px;
+  font-weight: bold;
+  letter-spacing: 6px;
+  color: #ff4444;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px #ff2222, 0 0 40px #880000;
+  display: none;
+}
+
+#shutdown-screen.offline .shutdown-offline { display: block; }
+#shutdown-screen.offline .shutdown-title { font-size: 13px; color: #888888; }
+#shutdown-screen.offline .shutdown-sub   { color: #555555; }
 
 /* ── Desktop ─────────────────────────────────────────────── */
 #desktop {

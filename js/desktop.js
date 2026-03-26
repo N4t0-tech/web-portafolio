@@ -29,32 +29,16 @@ function playSound(type) {
 
     switch (type) {
       case 'startup':
-        beep(523, 0.0, 0.15);
-        beep(659, 0.1, 0.15);
-        beep(784, 0.2, 0.15);
-        beep(1047, 0.3, 0.5, 0.12);
+        beep(523, 0.0, 0.15); beep(659, 0.1, 0.15);
+        beep(784, 0.2, 0.15); beep(1047, 0.3, 0.5, 0.12);
         break;
-      case 'open':
-        beep(523, 0, 0.08);
-        beep(784, 0.07, 0.15);
-        break;
-      case 'close':
-        beep(784, 0, 0.08);
-        beep(523, 0.07, 0.15);
-        break;
-      case 'minimize':
-        beep(659, 0, 0.08);
-        beep(440, 0.07, 0.1);
-        break;
-      case 'error':
-        beep(300, 0.0, 0.12, 0.15);
-        beep(300, 0.15, 0.12, 0.15);
-        break;
-      case 'click':
-        beep(880, 0, 0.04, 0.04);
-        break;
+      case 'open':    beep(523, 0, 0.08); beep(784, 0.07, 0.15); break;
+      case 'close':   beep(784, 0, 0.08); beep(523, 0.07, 0.15); break;
+      case 'minimize':beep(659, 0, 0.08); beep(440, 0.07, 0.1);  break;
+      case 'error':   beep(300, 0.0, 0.12, 0.15); beep(300, 0.15, 0.12, 0.15); break;
+      case 'click':   beep(880, 0, 0.04, 0.04); break;
     }
-  } catch (e) { /* AudioContext not available */ }
+  } catch (e) {}
 }
 
 // ── Clock ─────────────────────────────────────────────────────
@@ -68,7 +52,7 @@ function updateClock() {
 // ── Boot Screen ───────────────────────────────────────────────
 function runBoot() {
   var boot = document.getElementById('boot-screen');
-  var bar = document.getElementById('boot-bar');
+  var bar  = document.getElementById('boot-bar');
   var progress = 0;
 
   var interval = setInterval(function () {
@@ -82,13 +66,34 @@ function runBoot() {
         boot.style.opacity = '0';
         setTimeout(function () {
           boot.style.display = 'none';
-          initDesktop();
-          playSound('startup');
+          showLogin();
         }, 600);
       }, 500);
     }
     bar.style.width = Math.min(progress, 100) + '%';
   }, 220);
+}
+
+// ── Login Screen ──────────────────────────────────────────────
+function showLogin() {
+  var screen = document.getElementById('login-screen');
+  screen.removeAttribute('hidden');
+  setTimeout(function () { document.getElementById('login-pass').focus(); }, 50);
+
+  function doLogin() {
+    screen.setAttribute('hidden', '');
+    initDesktop();
+    playSound('startup');
+  }
+
+  document.getElementById('login-ok').addEventListener('click', doLogin);
+  document.getElementById('login-cancel').addEventListener('click', doLogin);
+  document.getElementById('login-pass').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') doLogin();
+  });
+  document.getElementById('login-user').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('login-pass').focus();
+  });
 }
 
 // ── Dialog ────────────────────────────────────────────────────
@@ -127,7 +132,6 @@ function openWindow(id) {
   focusWindow(id);
   addToTaskbar(id);
   playSound('open');
-  // Close start menu if open
   document.getElementById('start-menu').setAttribute('hidden', '');
 }
 
@@ -146,10 +150,7 @@ function minimizeWindow(id) {
   win.style.display = 'none';
   win.dataset.minimized = 'true';
   var btn = document.querySelector('[data-taskbar="' + id + '"]');
-  if (btn) {
-    btn.classList.remove('active-page');
-    btn.classList.add('minimized');
-  }
+  if (btn) { btn.classList.remove('active-page'); btn.classList.add('minimized'); }
   playSound('minimize');
 }
 
@@ -161,25 +162,19 @@ function maximizeWindow(id) {
   if (win.dataset.maximized === 'true') {
     var prev = maximizedState[id];
     if (prev) {
-      win.style.left = prev.left;
-      win.style.top = prev.top;
-      win.style.width = prev.width;
-      win.style.height = '';
+      win.style.left = prev.left; win.style.top = prev.top;
+      win.style.width = prev.width; win.style.height = '';
       win.style.maxWidth = prev.maxWidth;
     }
     win.dataset.maximized = 'false';
     if (maxBtn) maxBtn.setAttribute('aria-label', 'Maximize');
   } else {
     maximizedState[id] = {
-      left: win.style.left,
-      top: win.style.top,
-      width: win.style.width,
-      maxWidth: win.style.maxWidth || ''
+      left: win.style.left, top: win.style.top,
+      width: win.style.width, maxWidth: win.style.maxWidth || ''
     };
-    win.style.left = '0';
-    win.style.top = '0';
-    win.style.width = '100vw';
-    win.style.maxWidth = '100vw';
+    win.style.left = '0'; win.style.top = '0';
+    win.style.width = '100vw'; win.style.maxWidth = '100vw';
     win.style.height = 'calc(100vh - 38px)';
     win.dataset.maximized = 'true';
     if (maxBtn) maxBtn.setAttribute('aria-label', 'Restore');
@@ -192,17 +187,14 @@ function addToTaskbar(id) {
   if (document.querySelector('[data-taskbar="' + id + '"]')) return;
   var win = document.getElementById(id);
   var title = win ? win.querySelector('.title-bar-text').textContent.trim() : id;
-
   var btn = document.createElement('button');
   btn.dataset.taskbar = id;
   btn.textContent = title;
   btn.addEventListener('click', function () {
     var w = document.getElementById(id);
     if (w.dataset.minimized === 'true') {
-      w.style.display = '';
-      delete w.dataset.minimized;
-      btn.classList.remove('minimized');
-      focusWindow(id);
+      w.style.display = ''; delete w.dataset.minimized;
+      btn.classList.remove('minimized'); focusWindow(id);
     } else if (parseInt(w.style.zIndex) === zTop) {
       minimizeWindow(id);
     } else {
@@ -226,29 +218,23 @@ function makeResizable(win) {
 
     h.addEventListener('mousedown', function (e) {
       if (win.dataset.maximized === 'true') return;
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); e.stopPropagation();
 
       var startX = e.clientX, startY = e.clientY;
       var startW = win.offsetWidth, startH = win.offsetHeight;
-      var startL = win.offsetLeft, startT = win.offsetTop;
+      var startL = win.offsetLeft,  startT = win.offsetTop;
       var MIN_W = 220, MIN_H = 120;
 
       function onMove(e) {
-        var dx = e.clientX - startX;
-        var dy = e.clientY - startY;
+        var dx = e.clientX - startX, dy = e.clientY - startY;
         var w = startW, h = startH, l = startL, t = startT;
-
         if (dir.includes('e')) w = Math.max(MIN_W, startW + dx);
         if (dir.includes('s')) h = Math.max(MIN_H, startH + dy);
         if (dir.includes('w')) { w = Math.max(MIN_W, startW - dx); l = startL + startW - w; }
         if (dir.includes('n')) { h = Math.max(MIN_H, startH - dy); t = startT + startH - h; }
-
-        win.style.width    = w + 'px';
-        win.style.maxWidth = w + 'px';
-        win.style.height   = h + 'px';
-        win.style.left     = l + 'px';
-        win.style.top      = Math.max(0, t) + 'px';
+        win.style.width = w + 'px'; win.style.maxWidth = w + 'px';
+        win.style.height = h + 'px'; win.style.left = l + 'px';
+        win.style.top = Math.max(0, t) + 'px';
       }
 
       function onUp() {
@@ -267,17 +253,14 @@ function makeDraggable(win) {
   var titleBar = win.querySelector('.title-bar');
   if (!titleBar) return;
 
-  var isDragging = false;
-  var startX, startY, startLeft, startTop;
+  var isDragging = false, startX, startY, startLeft, startTop;
 
   titleBar.addEventListener('mousedown', function (e) {
     if (e.target.closest('.title-bar-controls')) return;
     if (win.dataset.maximized === 'true') return;
     isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startLeft = win.offsetLeft;
-    startTop = win.offsetTop;
+    startX = e.clientX; startY = e.clientY;
+    startLeft = win.offsetLeft; startTop = win.offsetTop;
     focusWindow(win.id);
     e.preventDefault();
   });
@@ -285,27 +268,21 @@ function makeDraggable(win) {
   document.addEventListener('mousemove', function (e) {
     if (!isDragging) return;
     win.style.left = (startLeft + (e.clientX - startX)) + 'px';
-    win.style.top = Math.max(0, startTop + (e.clientY - startY)) + 'px';
+    win.style.top  = Math.max(0, startTop + (e.clientY - startY)) + 'px';
   });
 
   document.addEventListener('mouseup', function () { isDragging = false; });
-
   win.addEventListener('mousedown', function () { focusWindow(win.id); });
 }
 
 // ── Desktop Icons ─────────────────────────────────────────────
 function makeIconDraggable(icon) {
-  var isDragging = false;
-  var hasMoved = false;
-  var startX, startY, startLeft, startTop;
+  var isDragging = false, hasMoved = false, startX, startY, startLeft, startTop;
 
   icon.addEventListener('mousedown', function (e) {
-    isDragging = true;
-    hasMoved = false;
-    startX = e.clientX;
-    startY = e.clientY;
-    startLeft = icon.offsetLeft;
-    startTop = icon.offsetTop;
+    isDragging = true; hasMoved = false;
+    startX = e.clientX; startY = e.clientY;
+    startLeft = icon.offsetLeft; startTop = icon.offsetTop;
     document.querySelectorAll('.desktop-icon').forEach(function (i) { i.classList.remove('selected'); });
     icon.classList.add('selected');
     e.preventDefault();
@@ -313,12 +290,11 @@ function makeIconDraggable(icon) {
 
   document.addEventListener('mousemove', function (e) {
     if (!isDragging) return;
-    var dx = e.clientX - startX;
-    var dy = e.clientY - startY;
+    var dx = e.clientX - startX, dy = e.clientY - startY;
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
     if (hasMoved) {
       icon.style.left = (startLeft + dx) + 'px';
-      icon.style.top = (startTop + dy) + 'px';
+      icon.style.top  = (startTop  + dy) + 'px';
     }
   });
 
@@ -346,12 +322,13 @@ function toggleStartMenu() {
 
 function shutDown() {
   document.getElementById('start-menu').setAttribute('hidden', '');
-  showDialog('¿Desea apagar el equipo?', function () {
+  showDialog('\u00bfDesea apagar el equipo?', function () {
     var sd = document.getElementById('shutdown-screen');
     sd.removeAttribute('hidden');
     setTimeout(function () {
+      sd.classList.add('offline');
       sd.querySelector('.shutdown-title').textContent = 'Ahora puede apagar el equipo con seguridad.';
-      sd.querySelector('.shutdown-sub').textContent = '...o recarga la página para volver 😉';
+      sd.querySelector('.shutdown-sub').textContent = '...o recarga la p\u00e1gina para volver \uD83D\uDE09';
     }, 1500);
   });
 }
@@ -368,7 +345,7 @@ function startScreensaver() {
   ss.removeAttribute('hidden');
 
   var canvas = document.getElementById('screensaver-canvas');
-  canvas.width = window.innerWidth;
+  canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
   var ctx = canvas.getContext('2d');
 
@@ -376,13 +353,11 @@ function startScreensaver() {
   ctx.font = 'bold 30px Mononoki, monospace';
   var tw = ctx.measureText(text).width;
   var th = 30;
-
-  var x = Math.random() * (canvas.width - tw);
-  var y = th + Math.random() * (canvas.height - th * 2);
+  var x  = Math.random() * (canvas.width - tw);
+  var y  = th + Math.random() * (canvas.height - th * 2);
   var vx = 2.2, vy = 1.6;
-  var colors = ['#ff4444', '#44ff44', '#4488ff', '#ffff44', '#ff44ff', '#44ffff', '#ffffff'];
-  var ci = 0;
-  var frame;
+  var colors = ['#ff4444','#44ff44','#4488ff','#ffff44','#ff44ff','#44ffff','#ffffff'];
+  var ci = 0, frame;
 
   function draw() {
     ctx.fillStyle = '#000';
@@ -401,22 +376,22 @@ function startScreensaver() {
 
 function stopScreensaver() {
   screensaverActive = false;
-  var ss = document.getElementById('screensaver');
-  ss.setAttribute('hidden', '');
+  document.getElementById('screensaver').setAttribute('hidden', '');
   var canvas = document.getElementById('screensaver-canvas');
   if (canvas._frame) cancelAnimationFrame(canvas._frame);
   resetScreensaverTimer();
 }
 
-// ── Tabs (blog) ───────────────────────────────────────────────
+// ── Tabs ──────────────────────────────────────────────────────
 function initTabs() {
   document.querySelectorAll('[role="tab"]').forEach(function (tab) {
     tab.addEventListener('click', function (e) {
       e.preventDefault();
       var list = tab.closest('[role="tablist"]');
       if (!list) return;
+      var win = tab.closest('.window');
       list.querySelectorAll('[role="tab"]').forEach(function (t) { t.removeAttribute('aria-selected'); });
-      document.querySelectorAll('[role="tabpanel"]').forEach(function (p) { p.setAttribute('hidden', ''); });
+      if (win) win.querySelectorAll('[role="tabpanel"]').forEach(function (p) { p.setAttribute('hidden', ''); });
       tab.setAttribute('aria-selected', 'true');
       var panelId = tab.querySelector('a').getAttribute('href').slice(1);
       document.getElementById(panelId).removeAttribute('hidden');
@@ -430,18 +405,16 @@ function initDesktop() {
   var offset = 0;
 
   windows.forEach(function (win) {
-    // Initial centered position with cascade
     var w = Math.min(parseInt(win.style.maxWidth) || 880, window.innerWidth * 0.9);
     var left = Math.max(90, (window.innerWidth - w) / 2) + offset;
-    win.style.left = left + 'px';
-    win.style.top = (20 + offset) + 'px';
+    win.style.left   = left + 'px';
+    win.style.top    = (20 + offset) + 'px';
     win.style.zIndex = zTop - offset;
     offset += 24;
 
     makeDraggable(win);
     makeResizable(win);
 
-    // Title bar controls
     var closeBtn = win.querySelector('[aria-label="Close"]');
     var minBtn   = win.querySelector('[aria-label="Minimize"]');
     var maxBtn   = win.querySelector('[aria-label="Maximize"]');
@@ -454,7 +427,6 @@ function initDesktop() {
 
   if (windows.length > 0) focusWindow(windows[0].id);
 
-  // Desktop icons
   document.querySelectorAll('.desktop-icon[data-window]').forEach(function (icon) {
     makeIconDraggable(icon);
     var clicks = 0;
@@ -463,9 +435,9 @@ function initDesktop() {
       setTimeout(function () {
         if (clicks >= 2) {
           var winId = icon.dataset.window;
-          var win = document.getElementById(winId);
-          if (win) {
-            if (win.hasAttribute('hidden') || win.dataset.minimized === 'true') openWindow(winId);
+          var w = document.getElementById(winId);
+          if (w) {
+            if (w.hasAttribute('hidden') || w.dataset.minimized === 'true') openWindow(winId);
             else focusWindow(winId);
           }
         }
@@ -474,7 +446,6 @@ function initDesktop() {
     });
   });
 
-  // Trash icon
   var trash = document.getElementById('icon-trash');
   if (trash) {
     makeIconDraggable(trash);
@@ -483,7 +454,7 @@ function initDesktop() {
       trashClicks++;
       setTimeout(function () {
         if (trashClicks >= 2) {
-          showDialog('La Papelera de reciclaje está vacía.', null);
+          showDialog('La Papelera de reciclaje est\u00e1 vac\u00eda.', null);
           document.getElementById('dialog-yes').textContent = 'OK';
           document.getElementById('dialog-no').style.display = 'none';
         }
@@ -492,35 +463,27 @@ function initDesktop() {
     });
   }
 
-  // Deselect icons on desktop click
   document.getElementById('desktop').addEventListener('click', function (e) {
     if (e.target === this) {
       document.querySelectorAll('.desktop-icon').forEach(function (i) { i.classList.remove('selected'); });
     }
   });
 
-  // Start menu
   document.getElementById('start-btn').addEventListener('click', function (e) {
-    e.stopPropagation();
-    toggleStartMenu();
+    e.stopPropagation(); toggleStartMenu();
   });
 
-  // Dialog buttons
   document.getElementById('dialog-yes').addEventListener('click', function () { closeDialog(true); });
-  document.getElementById('dialog-no').addEventListener('click', function () { closeDialog(false); });
+  document.getElementById('dialog-no').addEventListener('click',  function () { closeDialog(false); });
 
-  // Screensaver
   document.addEventListener('mousemove', resetScreensaverTimer);
-  document.addEventListener('keydown', resetScreensaverTimer);
-  document.addEventListener('click', resetScreensaverTimer);
+  document.addEventListener('keydown',   resetScreensaverTimer);
+  document.addEventListener('click',     resetScreensaverTimer);
   document.getElementById('screensaver').addEventListener('click', stopScreensaver);
   resetScreensaverTimer();
 
-  // Clock
   updateClock();
   setInterval(updateClock, 30000);
-
-  // Tabs
   initTabs();
 }
 

@@ -29,13 +29,44 @@
   </div>
 </div>
 
+<!-- ══════════════ LOGIN SCREEN ══════════════ -->
+<div id="login-screen" hidden>
+  <div class="window login-window">
+    <div class="title-bar">
+      <div class="title-bar-text">&#128273; Entrar en Windows</div>
+    </div>
+    <div class="window-body">
+      <div class="login-header">
+        <span class="login-icon">&#128273;</span>
+        <p>Escriba el nombre de usuario y la contrase&#241;a para conectarse a la red de Windows.</p>
+      </div>
+      <table class="login-fields">
+        <tr>
+          <td><label for="login-user">Usuario:</label></td>
+          <td><input type="text" id="login-user" value="Renato"></td>
+        </tr>
+        <tr>
+          <td><label for="login-pass">Contrase&#241;a:</label></td>
+          <td><input type="password" id="login-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"></td>
+        </tr>
+      </table>
+      <div class="login-btns">
+        <button id="login-ok">Aceptar</button>
+        <button id="login-cancel">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════════ SCREENSAVER ══════════════ -->
 <div id="screensaver" hidden>
   <canvas id="screensaver-canvas"></canvas>
+  <div id="screensaver-offline">OFFLINE</div>
 </div>
 
 <!-- ══════════════ SHUTDOWN ══════════════════ -->
 <div id="shutdown-screen" hidden>
+  <p class="shutdown-offline">OFFLINE</p>
   <p class="shutdown-title">Apagando el sistema...</p>
   <p class="shutdown-sub">&nbsp;</p>
 </div>
@@ -99,9 +130,9 @@
     </div>
     <div class="window-body">
       <div class="hero-text">
-        <h2>Bienvenido a mi Portafolio</h2>
-        <p>Soy Renato Campos, Tecn&#243;logo en Telecomunicaciones y futuro Ingeniero en Telecomunicaciones.</p>
-        <p>Mis hobbies son dise&#241;ar webs y jugar videojuegos.</p>
+        <h2 id="hero-heading">Bienvenido a mi Portafolio</h2>
+        <p id="hero-intro">Soy Renato Campos, Tecn&#243;logo en Telecomunicaciones y futuro Ingeniero en Telecomunicaciones.</p>
+        <p id="hero-hobbies">Mis hobbies son dise&#241;ar webs y jugar videojuegos.</p>
       </div>
       <hr>
       <h3>Mis Proyectos</h3>
@@ -211,7 +242,7 @@
                 <p>Tengo experiencia en <b>Linux</b> y <b>Windows</b>, y certificaciones <b>CCNA 1 y 2</b>.</p>
                 <p>Me encanta enfrentar desaf&#237;os t&#233;cnicos y colaborar en proyectos que fusionen tecnolog&#237;a y creatividad.</p>
                 <p>Mi objetivo es titularme como <b>ingeniero en telecomunicaciones</b> y viajar por el mundo.</p>
-                <p>Adem&#225;s, soy fanático de los <b>videojuegos indie</b> y la <b>m&#250;sica rock y metal</b>.</p>
+                <p>Adem&#225;s, soy fan&#225;tico de los <b>videojuegos indie</b> y la <b>m&#250;sica rock y metal</b>.</p>
               </div>
               <p class="blog-post-footer">&#128172; Comentarios (0) &nbsp;|&nbsp; &#128065; Vistas: 89</p>
             </div>
