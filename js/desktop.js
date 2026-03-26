@@ -5,7 +5,7 @@
 var zTop = 100;
 var screensaverTimer = null;
 var screensaverActive = false;
-var SCREENSAVER_DELAY = 30000;
+var SCREENSAVER_DELAY = 300000;
 var dialogCallback = null;
 var maximizedState = {};
 
